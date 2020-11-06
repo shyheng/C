@@ -4,11 +4,223 @@
 
 
 
+
+//强制类型转换
 int main()
 {
-
+	int a = 0x1234, b = 0x56789;
+	char *p1, *p2;
+	printf("%#x %#x\n",a,b);
+	p1 = (char *)&a;
+	p2 = (char *)&b;
+	printf("%#x %#x\n", *p1, *p2);
+	//字符指针++    指针存放地址加4
+	//整数指针++   指针存放地址加4
+	p1++;
+	p2++;
+	printf("%#x %#x\n", *p1, *p2);
 	return 0;
+
 }
+
+
+
+
+
+
+
+
+
+
+//指针
+//int main()
+//{
+//	//定义一个变量
+//	int a = 100;
+//
+//	//定义一个指针
+//	int* p;
+//
+//	//给指针赋值
+//	//将a的地址保存在p中
+//	p = &a;
+//
+//	//指针变量都是4个字节
+//
+//	printf("a = %d %d \n",a ,*p);
+//	printf("&a = %d %d \n",&a ,p);
+//	return 0;
+//
+//
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//选择编译
+//#define A
+//int main()
+//{
+//#ifdef 代码片段
+//
+//#endif // 代码片段
+//
+//}
+
+
+
+
+
+
+
+
+
+
+
+//带宏参
+//#define S(a,b) a*b
+//int main()
+//{
+//	printf("%d\n",S(2,5));
+//
+//	//bug,不会有括号
+//	printf("%d\n",S(2+2,4));
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+//宏定义
+//#define PI 3.1415926
+//int main()
+//{
+//	printf("PI = %lf\n",PI);
+//	double d = PI;
+//	printf("%lf\n",d);
+//	return 0;
+//	
+//}
+
+
+
+
+
+
+
+//内部函数
+//静态函数
+
+//变量取就近
+
+//int main()
+//{
+//	 
+//
+//	return 0;
+//
+//}
+
+
+
+
+
+
+
+
+
+
+//静态变量
+//void my()
+//{
+//	int w = 0;//普通
+//	static int num;//静态
+//	//只会一次初始化
+//
+//	printf("%d\n",w);//十六进制
+//	printf("%d\n",num);//0
+//}
+//
+//void my1()
+//{
+//	//静态不会释放空间
+//	static int s = 100;
+//	s++;
+//	printf("%d\n", s);
+//}
+//int main()
+//{
+//	my();
+//	my1();
+//	return 0;
+//
+//}
+
+
+
+
+
+
+//goto,少用
+
+//int main(int a, char *s)
+//{
+//	//求1到100的和
+//	int i = 0;
+//	int sum = 0;
+//JOOP:
+//	sum += i;
+//	i++;
+//	if (i <= 100)
+//	{
+//		goto JOOP;
+//	}
+//	printf("%d\n", sum);
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//for循环
+
+//int main(int argc ,char *argv[])
+//{
+//	int i = 0;
+//	int sum = 0;
+//	for (i = 1; i < 100; i++)
+//	{
+//		sum += i;
+//	}
+//	printf("%d\n", sum);
+//
+//	return 0;
+//}
 
 
 
