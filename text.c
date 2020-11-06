@@ -23,7 +23,7 @@ void text1()
 int main()
 {
 	
-	text();
+	text1();
 	return 0;
 
 }
