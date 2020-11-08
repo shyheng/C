@@ -5,69 +5,210 @@
 
 
 
+
+
+//主函数传参
+int main(int argc, char* agrv[])
+{
+	 
+	return 0;
+}
+	
+
+
+
+
+
+
+//void * 通用指针 占4个字节
+
+
+//NULL
+//空指针
+
+
+
+
+
+
+
+
+
+
+//容易混淆的指针
+//1，int*a[10]     指针数组
+//int (*a)[10]     数组指针
+//int **p       指针的指针
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//指针函数-指针作为函数返回值
+//char* fun()
+//{
+//	//栈去开辟的空间会随着当前代码的结束而释放空间
+//	//char s[100] = "hello world";
+//
+//	//静态区的空间不会随着当前代码片段的结束而释放空间
+//	static char s[100] = "hello world";
+//	return s;
+//}
+//
+//
+//void text()
+//{
+//	char* p;
+//	p = fun();
+//	printf("%s\n",p);
+//}
+//
+//
+//
+////函数指针
+////指针保存函数的指针
+//
+//
+//
+//
+//
+//int main()
+//{
+//	text();
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //指针和函数的关系
 //函数传参方式 复制传参，将实参的值传递给形参，不管形参怎么改变，跟实参都没关系
 
-void fun(int a,int b) 
-{
-	int temp;
-	temp = a;
-	a = b;
-	b = temp;
-
-	printf("2 a = %d,b = %d\n", a, b);
-	printf("&a = %p,&b = %p\n", &a, &b);
-}
-
-//函数传参 地址传参
-//将实参的地址传递给形参，形参对保存的地址的内容
-//进行任何操作，实参的值也会跟着改变
-void fun1(int* p, int* q)
-{
-	int temp;
-	temp = *p;
-	*p = *q;
-	*q = temp;
-	printf("2*p = %d,*q = %d\n", *p, *q);
-	printf("2 p = %p,q = %p\n", p, q);
-}
-
-void text1()
-{
-	int a = 100, b = 20;
-	printf("1 a = %d,b = %d\n", a, b);
-	printf("1&a = %p,&b = %p\n", &a, &b);
-
-	fun1(&a,&b);
-	printf("3  a = %d,b = %d\n", a, b);
-	//fun a =100 b = 20
-	//fun1 a=20 b = 100
-}
-
-
-//传数组
-
-//void fun2(int p[])//形式一
-
-void fun2 (int *p)
-{
-	printf("%d\n", p[2]);
-	printf("%d\n", *(p + 3));
-}
-
-void text2()
-{
-	int a[10] = {1,2,3,4,5,6,7,8};
-	fun2(a);
-}
-
-
-int main()
-{
-	//text1();
-	text2();
-	return 0;
-}
+//void fun(int a,int b) 
+//{
+//	int temp;
+//	temp = a;
+//	a = b;
+//	b = temp;
+//
+//	printf("2 a = %d,b = %d\n", a, b);
+//	printf("&a = %p,&b = %p\n", &a, &b);
+//}
+//
+////函数传参 地址传参
+////将实参的地址传递给形参，形参对保存的地址的内容
+////进行任何操作，实参的值也会跟着改变
+//void fun1(int* p, int* q)
+//{
+//	int temp;
+//	temp = *p;
+//	*p = *q;
+//	*q = temp;
+//	printf("2*p = %d,*q = %d\n", *p, *q);
+//	printf("2 p = %p,q = %p\n", p, q);
+//}
+//
+//void text1()
+//{
+//	int a = 100, b = 20;
+//	printf("1 a = %d,b = %d\n", a, b);
+//	printf("1&a = %p,&b = %p\n", &a, &b);
+//
+//	fun1(&a,&b);
+//	printf("3  a = %d,b = %d\n", a, b);
+//	//fun a =100 b = 20
+//	//fun1 a=20 b = 100
+//}
+//
+//
+////传数组
+//
+//
+////一维数组
+////void fun2(int p[])//形式一
+//
+//void fun2 (int *p)
+//{
+//	printf("%d\n", p[2]);//3
+//	printf("%d\n", *(p + 3));//4
+//}
+//
+//void text2()
+//{
+//	int a[10] = {1,2,3,4,5,6,7,8};
+//	fun2(a);
+//}
+//
+//
+//
+////传二维数组
+////void fun3 (int p[][4])//形式1
+//void fun3(int(*p)[4])//形式二:  通过数组指针
+//{
+//	//p[x][y] <==> *(*(p+y)+y)
+//	printf("%d\n", p[0][2]);
+//	printf("%d\n", *(*(p+1)+2));
+//}
+//
+//void text3()
+//{
+//	int a[2][4] = { 1,2,3,4,
+//		            5,6,7,8 };
+//	fun3(a);
+//}
+//
+//
+//
+////传指针数组
+//void fun4(char** q)
+//{
+//	int i;
+//	for (i = 0; i < 3; i++) 
+//	{
+//		printf("%s\n", q[i]);
+//	}
+//}
+//
+//void text4()
+//{
+//	char* p[3] = { "hello","world","zph" };
+//	fun4(p);
+//}
+//
+//
+//
+//
+//int main()
+//{
+//	//text1();
+//	//text2();
+//	//text3();
+//	text4();
+//	return 0;
+//}
 
 
 
