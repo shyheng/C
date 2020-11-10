@@ -1,18 +1,57 @@
 
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
 
 
 
+//动态内存申请
+//向堆区开辟空间
+
+//动态分配函数
+//malloc
+
+//void* malloc(unsigned int size);
+
+//功能在堆区开辟指定长度的空间，并且空间是连续的
+//size 开辟空间的大小
+//返回值
+//    成功：开辟好空间的首地址
+//    失败：NULL
 
 
-//主函数传参
-int main(int argc, char* agrv[])
+char* fun()
 {
-	 
+	//char ch[100] = "hello world";
+
+	//静态全局区的空间只要开辟好，除非程序结束，否则不会释放，所以
+	//如果是临时使用，不建议使用静态全局区的空间
+	//static char ch[100] = "hello world";
+
+	//堆区开辟空间，手动申请手动释放，更加灵活
+	//使用malloc函数的时候一般要进行强转
+	char* str = (char*)malloc(100 * sizeof(char));
+	str[0] = 'h';
+	str[1] = 'e';
+	str[2] = 'l';
+	str[3] = 'l';
+	str[4] = 'o';
+	str[5] = '\0';
+	return str;
+}
+
+int main()
+{
+	char* p;
+	p = fun();
+	printf("p = %s\n",p);
 	return 0;
 }
+
+
+
+
 	
 
 
