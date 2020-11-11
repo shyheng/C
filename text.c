@@ -1,19 +1,345 @@
 
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h>
 
 
 
+
+
+
+
+//const
+//关键字  代表只读
+//只能用不能改
+
+//const int a = 100;
+//全局变量只能使用但是不能修改
+//全局变量中修改直接报错
+//全局变量中修改地址 程序会异常
+
+//局部变量不能修改，报错
+//局部变量修改地址 ，可以改
+
+//修饰指针变量的类型，无法通过指针变量修改地址里面的值
+//修饰指针变量，无法修改指针变量保存的地址
+//修饰指针变量的类型，又修饰指针变量，则只能通过原本变量修改值
+
+
+
+
+
+
+
+
+
+
+
+
+
+//格式化字符串操作
+
+//收入
+//int sprintf(char* buf, const char* format,);
+/*
+buf 仓库名字
+format 传入名字
+
+*/
+
+//输出
+//int sscanf(const char *str,const char *format,...);
+/*
+str 指定要获取内容的字符串
+formcat 按照格式获取数据保存在变量中
+*/
+
+
+
+//sscanf 高级用法
+
+//void text2()
+//{
+//    //1 跳过数据   %*s或%*d
+//    char buf[20];
+//    sscanf("12345 6789", "%*d %s", buf);
+//    printf("%s\n", buf);
+//
+//    //2 读取指定宽度的数据  %[width]s
+//    char buf1[20];
+//    sscanf("123456789", "%4s", buf1);
+//    printf("%s\n", buf1);
+//
+//    //3 支持集合操作，只支持获取字符串
+//    //%[a-z]  表示匹配a到z中任意字符（尽可能多的匹配）
+//    //%[aBc]  匹配 a B c 中的一员，贪婪性
+//    //%[^aFc]  匹配非 a F c 的任意字符，贪婪性
+//    //%[^a-z]  表示读取除a-z以外的所有字符
+//    char buf2[20];
+//    sscanf("aks45KJKJKL", "%[a-z]", buf2);
+//    printf("%s\n", buf2);
+//}
+//
+//int main()
+//{
+//    text2();
+//    return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//字符串匹配函数
+//char *strstr（const char *haystack, const char *needle）;
+/*
+* 参数
+      在haystack指向的字符串中查找needle指向的字符串，也是首次匹配
+ 返回值
+      找到了：找到的字符串的首地址
+      没找到：返回NULL~
+
+
+
+
+
+
+
+
+
+      字符串转换值
+int atoi(const char *nptr);
+long atoi(const char *nptr);
+double atoi(const char *nptr);
+
+nptr指向的字符串转换成整数
+
+
+
+
+
+
+
+
+字符串切割函数
+char *strok(char *str ,const char *delim);
+
+参数
+    str 要切割的字符串
+    第一次切割，就传入指定的字符串，后面所有次的切割传NULL
+
+    delim：标识符，要根据指定的delim进行切割，切割的结果不包含delim
+
+返回值
+      返回切割下来的字符串的首地址，如果都切割完毕，则返回NULL
+
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//字符串拷贝
+//char *strcpy(char *dest, const char *src);
+/*
+功能  将src复制给dest
+参数 
+     dest ： 目的字符串
+     src ： 源字符串
+
+返回值 
+      保存dest字符串的首地址
+注意 使用strcpy函数复制字符串时必须保证dest足够大，否则会内存溢出
+     strcpy是将src字符串中第一个\0之前包括\0复制给dest
+*/
+
+
+
+
+
+/*
+字符串追加函数
+    strcat（dest ，src）
+
+
+
+
+
+
+
+
+
+字符串比较函数
+int strcmp(const char *s1,const char *s2);
+比较a值
+如果s1大于s2返回1
+    s1小于s2返回-1
+    相等返回0
+
+
+    、
+
+
+
+
+
+
+字符查找函数
+char *strchr(const char *s ,int c);
+根据ASCII值找
+在s指向的字符串中，找最后一次出现的ASCII为c的字符
+
+
+
+*/
+//int main()
+//{
+//    //strcpy拷贝字符串
+//
+//
+//    char s1[32] = "he llo";
+//    char s2[32] = "shy";
+//   //使用此函数，必须保证第一个数足够大
+//    strcpy(s1, s2);
+//
+//    printf("s1 = %s\n", s1);
+//
+//    return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//使用strlen函数获取字符串的长度
+
+//int main()
+//{
+//	//获取长度
+//	//strlen 遇到\0结束
+//	char s1[100] = "hel\0lo";
+//
+//	printf(" %d\n", strlen(s1));
+//	printf(" %d\n", sizeof(s1));
+//
+//	char* s2 = "hello";
+//	printf(" %d\n", strlen(s2));
+//	printf(" %d\n", sizeof(s2));
+//
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//内存泄漏
+ //案例1
+
+//int main()
+//{
+//	char* p;
+//	p = (char*)malloc(100);
+//	//p指向某处
+//	p = "hello";
+//	//申请的100个字节，找不到，泄露
+//	return 0;
+//}
+
+//案例2
+//void fun()
+//{
+//	char* p;
+//	p = (char*)malloc(100);
+//	//可以使用p指向内存了
+//
+//}
+//
+//int main()
+//{
+//
+//	//每调用一次fun泄露100个字节
+//	fun();
+//	fun();
+//	return 0;
+//}
+
+
+
+/*
+解决方法
+   不用的时候一定要释放内存，一定不要把首地址弄丢了，防止野指针
+*/
+
+
+
+
+
+
+
+
+
+
+
+//malloc函数 开辟空间
 
 //动态内存申请
 //向堆区开辟空间
-
 //动态分配函数
 //malloc
-
 //void* malloc(unsigned int size);
-
 //功能在堆区开辟指定长度的空间，并且空间是连续的
 //size 开辟空间的大小
 //返回值
@@ -21,34 +347,96 @@
 //    失败：NULL
 
 
-char* fun()
-{
-	//char ch[100] = "hello world";
+//char* fun()
+//{
+//	//char ch[100] = "hello world";
+//	//静态全局区的空间只要开辟好，除非程序结束，否则不会释放，所以
+//	//如果是临时使用，不建议使用静态全局区的空间
+//	//static char ch[100] = "hello world";
+//	//堆区开辟空间，手动申请手动释放，更加灵活
+//	//使用malloc函数的时候一般要进行强转
+//	char* str = (char*)malloc(100 * sizeof(char));
+//	str[0] = 'h';
+//	str[1] = 'e';
+//	str[2] = 'l';
+//	str[3] = 'l';
+//	str[4] = 'o';
+//	str[5] = '\0';
+//	return str;
+//}
 
-	//静态全局区的空间只要开辟好，除非程序结束，否则不会释放，所以
-	//如果是临时使用，不建议使用静态全局区的空间
-	//static char ch[100] = "hello world";
+//free函数 释放堆区空间
 
-	//堆区开辟空间，手动申请手动释放，更加灵活
-	//使用malloc函数的时候一般要进行强转
-	char* str = (char*)malloc(100 * sizeof(char));
-	str[0] = 'h';
-	str[1] = 'e';
-	str[2] = 'l';
-	str[3] = 'l';
-	str[4] = 'o';
-	str[5] = '\0';
-	return str;
-}
+//free函数只能释放堆区的空间，其他区域的空间无法使用free
+//free释放空间必须释放malloc或者calloc或者relloc的返回值对应的空间，不能说只释放一部分
+//free（p）;注意当free后，因为没有个p赋值，所以p还是指向原先动态申请的内存。但是内存不在使用。
 
-int main()
-{
-	char* p;
-	p = fun();
-	printf("p = %s\n",p);
-	return 0;
-}
 
+
+//calloc函数
+//void *calloc (size_t nmemb,size_t size);
+//在堆区申请指定大小的空间
+//参数  nmemb 要申请的空间的块数
+//      size 每块的字节数
+// 返回值
+//      成功 申请空间的首地址
+//      失败 NULL
+
+
+
+// calloc和malloc 区别
+/*
+  1 函数名不一样
+  2 参数不一样
+  3 malloc申请的内存，内存中存放的内容时随机的，不确定的，而calloc函数申请的内存中的内容为0
+
+*/
+
+
+
+//realloc函数
+/*
+//void * relloc(void *s ,unsigned int newsize);
+
+功能 在原本申请好的堆区空间的基础上重新申请内存，新的空间大小为函数的第二个参数
+     如果原本申请好的空间的后面不足以增加指定大小，系统会重新找一个足够的位置开辟
+	 指定的空间，然后将原本空间中的数据拷贝过来，然后释放空间
+
+参数  
+     s 原本开辟好的空间的首地址
+	 newsize 重新开辟的空间的大小
+
+返回值
+      新的空间的首地址
+
+
+*/
+
+//void  text1()
+//{
+//	char* p;
+//	p = (char*)malloc(100);
+//	
+//	//在100个字节后面追加50个字节
+//	p = (char*)realloc(p, 150);
+//}
+//
+//int main()
+//{
+//	char* p;
+//	
+//	p = fun();
+//	printf("p = %s\n",p);
+//
+//	//使用free函数释放空间
+//	free(p);
+//	//防止野指针
+//	p = NULL;
+//
+//
+//	return 0;
+//}
+//注意 malloc calloc relloc 动态申请的内存，只有在free或程序结束时候才释放
 
 
 
