@@ -5,6 +5,54 @@
 
 
 
+//结构体  共生体  
+
+// 结构体和数组的区别
+  // 结构体可以同时拥有不同的数据类型
+
+//typedef struct
+//{
+//    int nun;
+//    char name[20];
+//    char sex;
+//}shy;
+//shy s,s1 = {100,"sss",'s'};
+
+
+//定义结构体类型
+struct stu
+{
+    int id;
+    char name[20];
+    char sex;
+    char age;
+//定义结构体类型的同时定义结构体变量
+}zs, ls = {1000,"s",'b',20};
+
+int main()
+{
+    //定义结构体类型之后定义变量
+    struct stu ww;
+    //结构体初始化
+    struct stu zl = {1000,"shy",'b',20};
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
