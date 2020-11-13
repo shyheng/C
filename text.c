@@ -5,7 +5,370 @@
 
 
 
-//结构体  共生体  
+//文件指针
+//FILE * 指针变量标识符
+
+//FILE结构体思想
+
+
+/*  
+
+打开文件fopen
+函数定义
+FILE* fopen(const* path, const char* mode);
+创建或打开一个文件
+参数
+path 文件名，如果只读写，默认是当前路径，也可以添加路径
+mode 文件权限
+
+     r 只读 文件不存在则报错
+*   r+ 读写 文件不存在则报错
+*   w 只写 文件不存在则创建，有则清空
+*   w+ 读写 文件不存在则创建，有则清空
+*   a 只写 文件不存在创建，存在则追加
+*   a+ 读写 文件不存在创建，存在则追加
+
+返回值
+     成功  文件指针
+     失败  NULL
+
+
+*/
+
+
+
+/*
+关闭文件
+fclose函数
+定义 
+ int fclose
+* 关闭fp代表的文件
+* 
+* 注意 一个文件只能关闭一次，关闭文件后，不能再读写文件等操作了
+* 
+* 返回值
+*     成功返回值 0 
+*     失败返回值 EOF
+*/
+
+
+/*
+* 文件读写
+* 读
+*    int fgetc(FILE * stream);
+*       从stream所示的文件中读取一个字节，将字节值返回
+* 返回值 
+*       以t的方式： 读到文件结尾返回EOF
+*       以b的方式： 读到文件结尾，使用feof判断结尾
+* 
+* 
+* 
+* 写 
+*    int fputc(int c, FILE * stream);
+*        将c值写到stream的文件中
+* 返回值
+*      如果输出成功，则返回输出的字节值
+*      如果输出失败，则返回一个EOF
+* EOF 是在stdio.h文件中定义的符号常量，值为-1
+* 
+* 
+*/
+
+
+/*
+* 一次读写一个字符串
+*  读
+*     定义
+*   char *fgets(char *s,int size,FILE *stream);
+* 从读到换行符或是文件的末尾停止读数
+* 
+* 返回值 
+*      成功符号目的数组的首地址，即s
+*      失败返回NULL
+* 
+* 写
+*    定义
+*  int fpufs(const char *s,FILE *stream);
+*      将s指向的字符串，写到stream所代表的文件中
+* 返回值
+*     成功返回写入的字符数
+
+*/
+
+
+/*
+* 读文件fread
+*    size_t fread(void *ptr,size_t sizesize_t nimemb,FILE *stream);
+* fread函数从stream所标识中读取数据，一块是size个字节，共nmemb块，放到ptr指向的内存里
+* 
+* 返回值
+*      实际读到的块数
+*
+* 
+* 
+*/
+
+/*
+* 写文件 fwrite
+* 
+*
+*/
+
+//随机读写
+//将文件的偏移量设置为文件的起始位置
+//rewind(fp);
+
+
+
+//fseek
+//int fseek(FILE *stream,long offset,int whence);
+//int fseek(文件指针类型，位移量，起始点)
+/*
+*  移动文件流的读写位置
+* 参数
+*    whence 起始位置
+*          文件开头  SEEK_SET 0
+*          文件当前位置 SEEK_CUR 1
+*          文件末尾   SEEK_END 2
+*   位移量
+*        以起点为基点，向前，后移动的字节数，正数往文件末尾方向偏移，负数往文件开头方向偏移
+*  
+* 
+* 
+*/
+
+
+typedef struct {
+    int a;
+    int b;
+    char c;
+}MSG;
+
+
+int main()
+{
+    //使用fopen函数打开或者创建文件，返回文件指针
+    FILE* fp;
+    fp = fopen("D:/桌面/text.txt","w+");
+    //fp = fopen("D:/桌面/text.txt","w");
+    //fp = fopen("D:/桌面/text.txt", "a");
+    if (fp == NULL)
+    {
+        printf("打开失败");
+        return -1;
+    }
+/*
+    //使用fgetc从文件中读取一个字符
+    //int c = fgetc(fp);
+    //printf("c = [%c] - %d\n", c, c);
+
+    //c = fgetc(fp);
+    //printf("c = [%c] - %d\n", c, c);
+
+    //int c;
+    //while ((c = fgetc(fp)) != EOF) 
+    //{
+    //    //有空格则会出现10，因为换行符为10
+    //    printf("c = [%c] - %d\n", c, c);
+    //}
+
+*/
+
+/*
+    //通过fputc函数写入一个字符
+    fputc('z', fp);
+    fputc('p', fp);
+    fputc('h', fp);
+    fputc('s', fp);
+    fputc('\n', fp);
+    fputc('o', fp);
+ */
+
+/*
+    //使用fgets读取文件内容
+    char buf[32] = "";
+    //读取大小size-1  8-1
+    fgets(buf,32,fp);
+    //遇到换行符返回，要全读，循环
+    printf("%s\n", buf);
+
+*/
+
+
+/*
+
+    //通过fputs函数向文件写入数据
+    fputs("6666666666\n",fp);
+    fputs("nzph\n",fp);
+
+*/  
+
+/*
+
+    //使用fread函数读取内容
+    int num;
+    char buf[128] = "";
+    num = fread(buf, 5, 4, fp);
+    printf("%s\n",buf);
+    printf("%d\n", num);
+
+
+*/
+/*
+
+    //使用fwrite向文件写入一个结构体
+    MSG msg[4] = { 1,2,'a',3,4,'b',5,6,'c',7,8,'d' };
+
+    fwrite(msg,sizeof(MSG),4,fp);
+
+
+    //将文件的偏移量设置为文件的起始位置
+    rewind(fp);
+
+    MSG rcv[4];
+    fread(rcv, sizeof(MSG), 4, fp);
+    
+    int i;
+    for ( i = 0; i < 4; i++)
+    {
+        printf("%d-%d-%c\n", rcv[i].a, rcv[i].b, rcv[i].c);
+    }
+
+*/
+
+    //获取当前指针的读写位置
+    //printf("offset = %ld\n",ftell(fp));
+    
+    //将当前文件的读写设置到起始位置
+    //rewind(fp);
+    //fseek(fp, 0, SEEK_SET);
+
+    //将当前文件的读写位置设置为倒数第5位
+    fseek(fp,-5,SEEK_END)
+
+    //使用fclose关闭
+    fclose(fp);
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//文件操作
+
+//行缓冲
+
+//全缓冲
+
+//无缓冲
+
+
+//行缓冲
+//int main()
+//{
+    //由于printf函数是一个标准的io，所以只有刷新缓冲区才可以到终端
+    //printf("shy");
+
+    //刷新缓冲区方法1：\n
+    //printf("shy\n");
+
+    //刷新缓冲区方法2：程序正常结束
+    //printf("shy");
+    //return 0;
+
+    //刷新缓冲区方法3：使用fflush函数刷新缓冲区
+    //printf("shy");
+    //fflush 刷新函数，可以刷新指定的缓冲区
+    //stdout：标准输出，就是对终端进行写操作
+    //fflush(stdout);
+
+    //刷新缓冲区方法4 当缓冲区满的时候会自动刷新
+    //默认行缓冲的大小为1024个字节
+//    int i;
+//    for (i = 1; i < 300; i++)
+//    {
+//        printf("%03d", i);
+//    }
+//
+//    while (1)
+//        ;
+//
+//    return 0;
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//链表
+//typedef struct student
+//{
+//    int mun;
+//    char name[20];
+//    struct student* next;
+//}STU;
+
+//链表的操作
+
+//链表的创建
+//链表的遍历
+//链表的释放
+//链表的查找
+//链表的插入
+//链表的删除
+//链表的排序
+//链表的逆序
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//结构体struct  共用体union  枚举enum
 
 // 结构体和数组的区别
   // 结构体可以同时拥有不同的数据类型
@@ -20,23 +383,23 @@
 
 
 //定义结构体类型
-struct stu
-{
-    int id;
-    char name[20];
-    char sex;
-    char age;
-//定义结构体类型的同时定义结构体变量
-}zs, ls = {1000,"s",'b',20};
-
-int main()
-{
-    //定义结构体类型之后定义变量
-    struct stu ww;
-    //结构体初始化
-    struct stu zl = {1000,"shy",'b',20};
-    return 0;
-}
+//struct stu
+//{
+//    int id;
+//    char name[20];
+//    char sex;
+//    char age;
+////定义结构体类型的同时定义结构体变量
+//}zs, ls = {1000,"s",'b',20};
+//
+//int main()
+//{
+//    //定义结构体类型之后定义变量
+//    struct stu ww;
+//    //结构体初始化
+//    struct stu zl = {1000,"shy",'b',20};
+//    return 0;
+//}
 
 
 
